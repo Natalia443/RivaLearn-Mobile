@@ -11,9 +11,12 @@ class LangSelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Idiomas', style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.black87,
-      ),
+          title: const Text(
+            'Idiomas',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.black87,
+          iconTheme: const IconThemeData(color: Colors.white)),
       body: const _LangsView(),
     );
   }
@@ -27,19 +30,16 @@ class _LangsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: langList.length,
-      itemBuilder: (context, index) {
-        final lang = langList[index];
-        return Card(
-          child: ListTile(
-            title: Text(lang.name),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              context.pushNamed(BookCatalogScreen.name, extra: lang.code);
-            }
-          )
-        );
-      }
-    );
+        itemCount: langList.length,
+        itemBuilder: (context, index) {
+          final lang = langList[index];
+          return Card(
+              child: ListTile(
+                  title: Text(lang.name),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                    context.pushNamed(BookCatalogScreen.name, extra: lang.code);
+                  }));
+        });
   }
 }
