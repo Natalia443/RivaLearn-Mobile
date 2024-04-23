@@ -18,11 +18,11 @@ const List<MenuItem> menuItems = [
   MenuItem(
       title: 'Textos Predeterminados',
       subtitle: 'textos de dominio publico en diversos idiomas',
-      icon: Icons.add_circle_outline_outlined,
+      icon: Icons.book,
       link: '/default_texts'),
   MenuItem(
       title: 'Diccionario',
       subtitle: 'Busqueda de palabras',
-      icon: Icons.smart_button_outlined,
+      icon: Icons.menu_book,
       link: '/dictionary'),
 ];

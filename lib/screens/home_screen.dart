@@ -12,6 +12,42 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home Screen'),
       ),
+      drawer: SafeArea(
+          child: Drawer(
+        child: SizedBox(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: CircleAvatar(
+                  radius: 24,
+                  backgroundColor: const Color(0xFFF37820).withOpacity(.15),
+                  child: const Text(
+                    'Natalia',
+                    style: TextStyle(
+                      color: Color(0xFF383838),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              const Text(
+                'Natalia',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF383838),
+                ),
+              ),
+            ],
+          ),
+        ),
+      )),
       body: const _HomeView(),
     );
   }
