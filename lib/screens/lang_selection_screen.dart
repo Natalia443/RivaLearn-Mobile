@@ -11,12 +11,10 @@ class LangSelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-            'Idiomas',
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.black87,
-          iconTheme: const IconThemeData(color: Colors.white)),
+        title: const Text(
+          'Idiomas',
+        ),
+      ),
       body: const _LangsView(),
     );
   }

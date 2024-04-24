@@ -44,10 +44,7 @@ class _BookCatalogScreenState extends State<BookCatalogScreen> {
       appBar: AppBar(
         title: const Text(
           'Libros',
-          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.black87,
-        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: _books.isNotEmpty
           ? BookViewer(books: _books)

@@ -37,12 +37,9 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
           title: Text(
             widget.book.title,
             style: const TextStyle(
-              color: Colors.white,
               fontSize: 20.0,
             ),
           ),
-          backgroundColor: Colors.black87,
-          iconTheme: const IconThemeData(color: Colors.white),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),

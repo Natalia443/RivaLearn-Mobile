@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/dictionary_datasource.dart';
 import 'package:flutter_application_1/core/data/lang_datasource.dart';
-import 'package:flutter_application_1/entities/language.dart';
 
 class DictionaryScreen extends StatefulWidget {
   const DictionaryScreen({super.key});
@@ -111,6 +110,7 @@ class _DictionaryViewState extends State<DictionaryView> {
           ),
           ElevatedButton(
               onPressed: widget.onClick, child: const Text('Enviar')),
+          const SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
               itemCount: widget.definitions.length,
