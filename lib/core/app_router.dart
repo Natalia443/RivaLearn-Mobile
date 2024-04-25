@@ -4,6 +4,7 @@ import 'package:flutter_application_1/screens/book_detail_screen.dart';
 import 'package:flutter_application_1/screens/dictionary_screen.dart';
 import 'package:flutter_application_1/screens/home_screen.dart';
 import 'package:flutter_application_1/screens/lang_selection_screen.dart';
+import 'package:flutter_application_1/screens/signup_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(routes: [
@@ -35,5 +36,10 @@ final appRouter = GoRouter(routes: [
     path: "/dictionary",
     name: DictionaryScreen.name,
     builder: (context, state) => const DictionaryScreen(),
+  ),
+  GoRoute(
+    path: "/signup",
+    name: SignUpScreen.name,
+    builder: (context, state) => const SignUpScreen(),
   ),
 ]);
