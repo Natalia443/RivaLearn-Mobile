@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/users_datasource.dart';
+import 'package:flutter_application_1/screens/login_screen.dart';
+import 'package:flutter_application_1/screens/widgets/input_widget.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -34,9 +37,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
                 child: Wrap(
                   children: [
-                    _buildInputField("Username", (value) => _username = value),
-                    _buildInputField("Email", (value) => _email = value),
-                    _buildInputField("Password", (value) => _password = value),
+                    buildInputField("Usuario", (value) => _username = value),
+                    buildInputField("Email", (value) => _email = value),
+                    buildInputField("Contraseña", (value) => _password = value),
                   ],
                 ),
               ),
@@ -45,27 +48,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     saveUser(_username!, _password!, _email!);
+                    context.pushNamed(LoginScreen.name);
                   }
                 },
                 child: const Text('Enviar'),
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildInputField(String label, Function(String?) onSave) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints.tightFor(width: 200, height: 70),
-        child: TextFormField(
-          onSaved: onSave,
-          obscureText: label.toLowerCase() == 'password',
-          decoration: InputDecoration(
-            hintText: label.toLowerCase(),
           ),
         ),
       ),

@@ -25,9 +25,4 @@ const List<MenuItem> menuItems = [
       subtitle: 'Busqueda de palabras',
       icon: Icons.menu_book,
       link: '/dictionary'),
-  MenuItem(
-      title: 'Registro',
-      subtitle: 'Registro de cuenta',
-      icon: Icons.verified_user,
-      link: '/signup'),
 ];
