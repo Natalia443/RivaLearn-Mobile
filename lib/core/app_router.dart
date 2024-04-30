@@ -6,6 +6,7 @@ import 'package:flutter_application_1/screens/home_screen.dart';
 import 'package:flutter_application_1/screens/lang_selection_screen.dart';
 import 'package:flutter_application_1/screens/login_screen.dart';
 import 'package:flutter_application_1/screens/main_menu_screen.dart';
+import 'package:flutter_application_1/screens/pdf_reader_screen.dart';
 import 'package:flutter_application_1/screens/signup_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -53,5 +54,10 @@ final appRouter = GoRouter(routes: [
     path: "/login",
     name: LoginScreen.name,
     builder: (context, state) => const LoginScreen(),
+  ),
+  GoRoute(
+    path: "/pdfviewer",
+    name: PDFViewerScreen.name,
+    builder: (context, state) => const PDFViewerScreen(),
   ),
 ]);

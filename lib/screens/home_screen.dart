@@ -20,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hola $username'),
+        title: const Text('RivaLearn'),
       ),
       drawer: SafeArea(
           child: Drawer(

@@ -7,7 +7,7 @@ Widget buildInputField(String label, Function(String?) onSave) {
       constraints: const BoxConstraints.tightFor(width: 200, height: 70),
       child: TextFormField(
         onSaved: onSave,
-        obscureText: label.toLowerCase() == 'password',
+        obscureText: label.toLowerCase() == 'contraseña',
         decoration: InputDecoration(
           hintText: label.toLowerCase(),
         ),

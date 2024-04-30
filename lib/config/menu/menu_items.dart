@@ -17,12 +17,17 @@ class MenuItem {
 const List<MenuItem> menuItems = [
   MenuItem(
       title: 'Textos Predeterminados',
-      subtitle: 'Textos de dominio publico en diversos idiomas',
+      subtitle: 'Textos de dominio público en diversos idiomas',
       icon: Icons.book,
       link: '/default_texts'),
   MenuItem(
       title: 'Diccionario',
-      subtitle: 'Busqueda de palabras',
+      subtitle: 'Búsqueda de palabras',
       icon: Icons.menu_book,
       link: '/dictionary'),
+  MenuItem(
+      title: 'Lector PDF',
+      subtitle: 'Subí tu propio texto.',
+      icon: Icons.bookmark_add,
+      link: '/pdfviewer'),
 ];
