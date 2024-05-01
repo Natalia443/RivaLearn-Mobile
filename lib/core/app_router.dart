@@ -1,6 +1,8 @@
 import 'package:flutter_application_1/entities/book.dart';
 import 'package:flutter_application_1/screens/book_catalog_screen.dart';
 import 'package:flutter_application_1/screens/book_detail_screen.dart';
+import 'package:flutter_application_1/screens/deck_creator_screen.dart';
+import 'package:flutter_application_1/screens/decks_screen.dart';
 import 'package:flutter_application_1/screens/dictionary_screen.dart';
 import 'package:flutter_application_1/screens/home_screen.dart';
 import 'package:flutter_application_1/screens/lang_selection_screen.dart';
@@ -59,5 +61,15 @@ final appRouter = GoRouter(routes: [
     path: "/pdfviewer",
     name: PDFViewerScreen.name,
     builder: (context, state) => const PDFViewerScreen(),
+  ),
+  GoRoute(
+    path: "/decks",
+    name: DeckScreen.name,
+    builder: (context, state) => const DeckScreen(),
+  ),
+  GoRoute(
+    path: "/create_deck",
+    name: DeckCreatorScreen.name,
+    builder: (context, state) => const DeckCreatorScreen(),
   ),
 ]);

@@ -30,4 +30,9 @@ const List<MenuItem> menuItems = [
       subtitle: 'Subí tu propio texto.',
       icon: Icons.bookmark_add,
       link: '/pdfviewer'),
+  MenuItem(
+      title: 'Decks',
+      subtitle: 'Crea tus decks',
+      icon: Icons.add_box_outlined,
+      link: '/decks'),
 ];
