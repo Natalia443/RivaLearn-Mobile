@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/decks_screen.dart';
+import 'package:flutter_application_1/core/data/deck_datasource.dart';
+import 'package:flutter_application_1/providers/user_state.dart';
+import 'package:flutter_application_1/screens/home_screen.dart';
 import 'package:flutter_application_1/screens/widgets/input_widget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class DeckCreatorScreen extends StatelessWidget {
+class DeckCreatorScreen extends ConsumerWidget {
   const DeckCreatorScreen({super.key});
   static const String name = "DeckCreatorScreen";
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     String? deckName;
+    final username = ref.watch(authProvider).tokens?['username'];
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +40,8 @@ class DeckCreatorScreen extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  context.pushNamed(DeckScreen.name);
+                  createDeck(username!, deckName!);
+                  context.pushNamed(HomeScreen.name);
                 },
                 child: const Text('Crear'),
               ),
