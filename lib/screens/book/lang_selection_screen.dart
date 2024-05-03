@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/lang_datasource.dart';
-import 'package:flutter_application_1/screens/book_catalog_screen.dart';
+import 'package:flutter_application_1/screens/book/book_catalog_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class LangSelectionScreen extends StatelessWidget {
@@ -28,16 +28,19 @@ class _LangsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: langList.length,
-        itemBuilder: (context, index) {
-          final lang = langList[index];
-          return Card(
-              child: ListTile(
-                  title: Text(lang.name),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    context.pushNamed(BookCatalogScreen.name, extra: lang.code);
-                  }));
-        });
+      itemCount: langList.length,
+      itemBuilder: (context, index) {
+        final lang = langList[index];
+        return Card(
+          child: ListTile(
+            title: Text(lang.name),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              context.pushNamed(BookCatalogScreen.name, extra: lang.code);
+            },
+          ),
+        );
+      },
+    );
   }
 }

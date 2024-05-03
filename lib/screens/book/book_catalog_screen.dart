@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/entities/book.dart';
 import 'package:flutter_application_1/core/data/books_datasource.dart';
-import 'package:flutter_application_1/screens/book_detail_screen.dart';
+import 'package:flutter_application_1/entities/book.dart';
+import 'package:flutter_application_1/screens/book/book_detail_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class BookCatalogScreen extends StatefulWidget {

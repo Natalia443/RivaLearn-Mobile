@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/data/deck_datasource.dart';
 import 'package:flutter_application_1/providers/user_state.dart';
-import 'package:flutter_application_1/screens/home_screen.dart';
-import 'package:flutter_application_1/screens/widgets/input_widget.dart';
+import 'package:flutter_application_1/screens/auth/view/home_screen.dart';
+import 'package:flutter_application_1/screens/auth/widgets/input_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginScreen extends ConsumerWidget {
-  const LoginScreen({super.key});
-  static const String name = "LoginScreen";
+class DeckCreatorScreen extends ConsumerWidget {
+  const DeckCreatorScreen({super.key});
+  static const String name = "DeckCreatorScreen";
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    String? deckName;
+    final username = ref.watch(authProvider).tokens?['username'];
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    String? username;
-    String? password;
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Iniciar sesión'),
+        title: const Text('Crear Deck'),
       ),
       body: Material(
         child: Center(
@@ -32,22 +32,18 @@ class LoginScreen extends ConsumerWidget {
                 },
                 child: Wrap(
                   children: [
-                    buildInputField("Usuario", (value) => username = value),
-                    buildInputField("Contraseña", (value) => password = value),
+                    buildInputField(
+                        "Nombre del deck", (value) => deckName = value),
                   ],
                 ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () async {
-                  if (formKey.currentState!.validate()) {
-                    await ref
-                        .read(authProvider.notifier)
-                        .login(username!, password!);
-                    context.pushNamed(HomeScreen.name);
-                  }
+                onPressed: () {
+                  createDeck(username!, deckName!);
+                  context.pushNamed(HomeScreen.name);
                 },
-                child: const Text('Enviar'),
+                child: const Text('Crear'),
               ),
             ],
           ),

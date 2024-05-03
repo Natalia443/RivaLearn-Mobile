@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/users_datasource.dart';
-import 'package:flutter_application_1/screens/login_screen.dart';
-import 'package:flutter_application_1/screens/widgets/input_widget.dart';
+import 'package:flutter_application_1/screens/auth/view/auth_screen.dart';
+import 'package:flutter_application_1/screens/auth/widgets/input_widget.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -48,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     saveUser(_username!, _password!, _email!);
-                    context.pushNamed(LoginScreen.name);
+                    context.pushNamed(AuthScreen.name);
                   }
                 },
                 child: const Text('Enviar'),
