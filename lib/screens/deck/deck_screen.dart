@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/deck_datasource.dart';
 import 'package:flutter_application_1/providers/user_state.dart';
-import 'package:flutter_application_1/screens/deck/deck_creator_screen.dart';
+import 'package:flutter_application_1/screens/screens.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -33,7 +33,9 @@ class DeckScreen extends ConsumerWidget {
                   child: ListTile(
                     title: Text(deckName),
                     trailing: const Icon(Icons.arrow_forward_ios),
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(FlashcardScreen.name, extra: deckName);
+                    },
                   ),
                 );
               },
