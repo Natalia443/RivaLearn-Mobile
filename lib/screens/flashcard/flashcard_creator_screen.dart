@@ -40,7 +40,9 @@ class _FlashcardCreatorScreenState extends State<FlashcardCreatorScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    buildInputField("Palabra", (value) => flashcard = value),
+                    InputField(
+                        label: "Palabra",
+                        onSaved: (value) => flashcard = value),
                     const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
