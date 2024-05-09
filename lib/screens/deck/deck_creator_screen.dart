@@ -32,8 +32,9 @@ class DeckCreatorScreen extends ConsumerWidget {
                 },
                 child: Wrap(
                   children: [
-                    buildInputField(
-                        "Nombre del deck", (value) => deckName = value),
+                    InputField(
+                        label: "Nombre del deck",
+                        onSaved: (value) => deckName = value),
                   ],
                 ),
               ),

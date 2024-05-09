@@ -23,30 +23,27 @@ class AuthScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Form(
-              key: formKey,
-              autovalidateMode: AutovalidateMode.always,
-              onChanged: () {
-                formKey.currentState?.save();
+            InputField(
+              label: 'Usuario',
+              onChanged: (value) {
+                username = value;
               },
-              child: Column(
-                children: [
-                  buildInputField("Usuario", (value) => username = value),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  buildInputField("Contraseña", (value) => password = value),
-                ],
-              ),
+            ),
+            const SizedBox(height: 20),
+            InputField(
+              label: 'Contraseña',
+              onChanged: (value) {
+                password = value;
+              },
             ),
             const SizedBox(
-              height: 50,
+              height: 40,
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.85,
               child: ElevatedButton(
                 onPressed: () async {
-                  if (formKey.currentState!.validate()) {
+                  if (password!.isNotEmpty && username!.isNotEmpty) {
                     await ref
                         .read(authProvider.notifier)
                         .login(username!, password!);

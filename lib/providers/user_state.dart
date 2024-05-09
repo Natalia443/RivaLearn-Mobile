@@ -8,12 +8,13 @@ final authProvider = StateNotifierProvider<AuthProvider, AuthState>((ref) {
 class AuthProvider extends StateNotifier<AuthState> {
   AuthProvider() : super(AuthState());
 
+  //implementar dartz para Either
   Future<void> login(String username, String password) async {
     try {
       final tokens = await loginUser(username, password);
       state = AuthState(isAuthenticated: true, tokens: tokens);
     } catch (error) {
-      rethrow;
+      throw Exception(error);
     }
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/users_datasource.dart';
-import 'package:flutter_application_1/screens/auth/view/auth_screen.dart';
-import 'package:flutter_application_1/screens/auth/widgets/input_widget.dart';
+import 'package:flutter_application_1/screens/auth/auth.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -37,9 +36,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
                 child: Wrap(
                   children: [
-                    buildInputField("Usuario", (value) => _username = value),
-                    buildInputField("Email", (value) => _email = value),
-                    buildInputField("Contraseña", (value) => _password = value),
+                    InputField(
+                        label: "Usuario",
+                        onSaved: (value) => _username = value),
+                    InputField(
+                        label: "Email", onSaved: (value) => _email = value),
+                    InputField(
+                        label: "Contraseña",
+                        onSaved: (value) => _password = value),
                   ],
                 ),
               ),
