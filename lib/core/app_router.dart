@@ -57,4 +57,18 @@ final appRouter = GoRouter(routes: [
     name: DeckCreatorScreen.name,
     builder: (context, state) => const DeckCreatorScreen(),
   ),
+  GoRoute(
+    path: "/flashcards",
+    name: FlashcardScreen.name,
+    builder: (context, state) => FlashcardScreen(
+      deckname: state.extra as String,
+    ),
+  ),
+  GoRoute(
+    path: "/create_flashcard",
+    name: FlashcardCreatorScreen.name,
+    builder: (context, state) => FlashcardCreatorScreen(
+      deckname: state.extra as String,
+    ),
+  ),
 ]);
