@@ -50,7 +50,7 @@ class DictionaryScreenState extends State<DictionaryScreen> {
               items: langList.map((lang) {
                 return DropdownMenuItem<String>(
                   value: lang.code,
-                  child: Text(lang.code),
+                  child: Text(lang.name),
                 );
               }).toList(),
             ),
