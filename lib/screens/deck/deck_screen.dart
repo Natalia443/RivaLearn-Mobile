@@ -68,7 +68,7 @@ class CreateDeckDialogState extends ConsumerState<CreateDeckDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final username = ref.watch(authProvider).tokens?['username'];
+    final userId = ref.watch(authProvider).tokens?['user_id'];
     return Dialog(
       child: Padding(
         padding:
@@ -86,7 +86,7 @@ class CreateDeckDialogState extends ConsumerState<CreateDeckDialog> {
               width: MediaQuery.of(context).size.width * 0.40,
               child: ElevatedButton(
                 onPressed: () {
-                  createDeck(username!, deckName!);
+                  createDeck(userId!, deckName!);
                   ref.invalidate(deckProvider);
                   Navigator.pop(context);
                 },

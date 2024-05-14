@@ -40,14 +40,12 @@ Future<Map<String, String>> loginUser(String username, String password) async {
 
     if (response.statusCode == 200) {
       final responseData = jsonDecode(response.body);
-      final username = responseData['username'];
-      final accessToken = responseData['access_token'];
-      final refreshToken = responseData['refresh_token'];
 
       return {
-        'username': username,
-        'access_token': accessToken,
-        'refresh_token': refreshToken,
+        'username': responseData['username'],
+        'user_id': responseData['user_id'].toString(),
+        'access_token': responseData['access_token'],
+        'refresh_token': responseData['refresh_token'],
       };
     } else {
       throw Exception('Error logging in: ${response.statusCode}');

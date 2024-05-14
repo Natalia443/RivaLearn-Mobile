@@ -4,7 +4,6 @@ import 'dart:convert';
 
 class BooksDataSource {
   static Future<List<Book>> fetchBooks(String code) async {
-    //final url = 'http://192.168.2.100:3001/api/lib/books?code=$code';
     final url =
         'https://rivalearn-backend.onrender.com/api/lib/books?code=$code';
 
@@ -26,7 +25,6 @@ class BooksDataSource {
   }
 
   static Future<String> fetchText(String url) async {
-    //final fetchTextUrl = 'http://192.168.2.100:3001/api/lib/text?url=$url';
     final fetchTextUrl =
         'https://rivalearn-backend.onrender.com/api/lib/text?url=$url';
     final response = await http.get(Uri.parse(fetchTextUrl));

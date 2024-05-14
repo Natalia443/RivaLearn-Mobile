@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<List<dynamic>> getDecks(String user) async {
+Future<List<dynamic>> getDecks(String id) async {
   final response = await http.get(
-      Uri.parse('https://rivalearn-backend.onrender.com/api/decks/get/$user'));
+      Uri.parse('https://rivalearn-backend.onrender.com/api/decks/get/$id'));
 
   if (response.statusCode == 200) {
     final List<dynamic> responseData = jsonDecode(response.body);
@@ -20,7 +20,7 @@ Future<List<dynamic>> getDecks(String user) async {
   }
 }
 
-Future<void> createDeck(String username, String deckName) async {
+Future<void> createDeck(String id, String deckName) async {
   const url = 'https://rivalearn-backend.onrender.com/api/decks/create';
 
   try {
@@ -28,7 +28,7 @@ Future<void> createDeck(String username, String deckName) async {
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
-        'username': username,
+        'userId': id,
         'deckname': deckName,
       }),
     );
