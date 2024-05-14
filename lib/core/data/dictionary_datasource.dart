@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 Future<List<String>> fetchMeaning(String text, String lang) async {

@@ -26,6 +26,40 @@ class DictionaryScreenState extends State<DictionaryScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Container(
+              height: 60,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+                ),
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Text('Seleccione idioma:'),
+                  DropdownButton<String>(
+                    value: selectedLang,
+                    onChanged: (String? newLang) {
+                      if (newLang != null) {
+                        setState(
+                          () {
+                            selectedLang = newLang;
+                          },
+                        );
+                      }
+                    },
+                    items: langList.map((lang) {
+                      return DropdownMenuItem<String>(
+                        value: lang.code,
+                        child: Text(lang.name),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
             TextField(
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -37,35 +71,27 @@ class DictionaryScreenState extends State<DictionaryScreen> {
                 });
               },
             ),
-            const SizedBox(height: 20),
-            DropdownButton<String>(
-              value: selectedLang,
-              onChanged: (String? newLang) {
-                if (newLang != null) {
-                  setState(() {
-                    selectedLang = newLang;
-                  });
-                }
-              },
-              items: langList.map((lang) {
-                return DropdownMenuItem<String>(
-                  value: lang.code,
-                  child: Text(lang.name),
-                );
-              }).toList(),
+            const SizedBox(
+              height: 25,
             ),
-            ElevatedButton(
-              onPressed: () async {
-                try {
-                  final response = await fetchMeaning(word, selectedLang);
-                  setState(() {
-                    definitions = response;
-                  });
-                } catch (error) {
-                  print('Error al obtener las definiciones: $error');
-                }
-              },
-              child: const Text('Enviar'),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.85,
+              child: ElevatedButton(
+                onPressed: () async {
+                  try {
+                    final response = await fetchMeaning(word, selectedLang);
+                    setState(() {
+                      definitions = response;
+                    });
+                  } catch (error) {
+                    throw Exception(error);
+                  }
+                },
+                child: const Text(
+                  'Enviar',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
             ),
             const SizedBox(height: 20),
             Expanded(
