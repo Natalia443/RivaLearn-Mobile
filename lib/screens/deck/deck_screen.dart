@@ -12,24 +12,26 @@ class DeckScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final deckList = ref.watch(deckProvider);
+    final userId = ref.watch(authProvider).tokens?['user_id'];
+    final deckState = ref.watch(deckProvider(userId!));
     return Scaffold(
       appBar: AppBar(
         title: const Text('Decks'),
       ),
       body: RefreshIndicator(
-        onRefresh: () => ref.refresh(deckProvider.future),
-        child: deckList.when(
+        onRefresh: () => ref.refresh(deckProvider(userId).future),
+        child: deckState.when(
           data: (deckList) => ListView.builder(
             itemCount: deckList.length,
             itemBuilder: (context, index) {
-              final deckName = deckList[index];
+              final deckName = deckList[index]['name'];
+              final deckId = deckList[index]['deck_id'].toString();
               return Card(
                 child: ListTile(
                   title: Text(deckName),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    context.pushNamed(FlashcardScreen.name, extra: deckName);
+                    context.pushNamed(FlashcardScreen.name, extra: deckId);
                   },
                 ),
               );

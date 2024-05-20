@@ -15,8 +15,8 @@ Future<List<dynamic>> getFlashcards(String deck) async {
   }
 }
 
-Future<void> createFlashcard(String deckName, String flashcard,
-    String sourceLang, String targetLang) async {
+Future<void> createFlashcard(String deckId, String flashcard, String sourceLang,
+    String targetLang) async {
   const url = '$baseUrl/create';
 
   try {
@@ -24,7 +24,7 @@ Future<void> createFlashcard(String deckName, String flashcard,
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
-        'deckname': deckName,
+        'deckId': deckId,
         'vocab': flashcard,
         'sourceLang': sourceLang,
         'targetLang': targetLang
