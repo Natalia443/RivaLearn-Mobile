@@ -19,7 +19,7 @@ Future<void> createDeck(String id, String deckName) async {
   const url = '$baseUrl/create';
 
   try {
-    final response = await http.post(
+    await http.post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
@@ -27,12 +27,6 @@ Future<void> createDeck(String id, String deckName) async {
         'deckname': deckName,
       }),
     );
-
-    if (response.statusCode == 200) {
-      print('Deck guardado exitosamente');
-    } else {
-      throw Exception('Error al guardar el deck: ${response.statusCode}');
-    }
   } catch (e) {
     throw Exception('Error de conexión: $e');
   }

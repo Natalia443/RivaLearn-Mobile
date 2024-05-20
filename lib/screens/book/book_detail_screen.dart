@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/books_datasource.dart';
-import 'package:flutter_application_1/entities/book.dart';
 
 class BookDetailScreen extends StatefulWidget {
-  final Book book;
+  final Map<String, dynamic> book;
   const BookDetailScreen({super.key, required this.book});
   static const String name = "BookDetailScreen";
 
@@ -13,50 +12,68 @@ class BookDetailScreen extends StatefulWidget {
 
 class _BookDetailScreenState extends State<BookDetailScreen> {
   String _text = '';
+  bool _isLoading = true;
+
   @override
   void initState() {
     super.initState();
-    fetchText();
+    fetchBookText();
   }
 
-  Future<void> fetchText() async {
+  Future<void> fetchBookText() async {
     try {
-      final text = await BooksDataSource.fetchText(widget.book.text);
-      setState(() {
-        _text = text;
-      });
+      final textUrl = widget.book['formats']?['text/plain; charset=us-ascii'];
+      if (textUrl != null) {
+        final text = await fetchText(textUrl);
+        setState(() {
+          _text = text;
+          _isLoading = false;
+        });
+      } else {
+        setState(() {
+          _text = 'No text available for this book';
+          _isLoading = false;
+        });
+      }
     } catch (e) {
-      //catch
+      print('Error fetching book text: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Error fetching book text')),
+      );
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            widget.book.title,
-            style: const TextStyle(
-              fontSize: 20.0,
-            ),
+      appBar: AppBar(
+        title: Text(
+          widget.book['title'] ?? 'Text',
+          style: const TextStyle(
+            fontSize: 20.0,
           ),
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: _text.isNotEmpty
-              ? SelectableText(
-                  _text,
-                  style: const TextStyle(
-                    fontSize: 19.0,
-                    color: Colors.black,
-                    fontFamily: 'Times New Roman',
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FontStyle.normal,
-                  ),
-                )
-              : const Center(
-                  child: CircularProgressIndicator(),
+      ),
+      body: _isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: SelectableText(
+                _text,
+                style: const TextStyle(
+                  fontSize: 19.0,
+                  color: Colors.black,
+                  fontFamily: 'Times New Roman',
+                  fontWeight: FontWeight.normal,
+                  fontStyle: FontStyle.normal,
                 ),
-        ));
+              ),
+            ),
+    );
   }
 }
