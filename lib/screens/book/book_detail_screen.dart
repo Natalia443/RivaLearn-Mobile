@@ -11,13 +11,30 @@ class BookDetailScreen extends StatefulWidget {
 }
 
 class _BookDetailScreenState extends State<BookDetailScreen> {
-  String _text = '';
+  late TextEditingController _textController;
   bool _isLoading = true;
+
+  void _showDialog(BuildContext context) {
+    Navigator.of(context).push(
+      DialogRoute<void>(
+        context: context,
+        builder: (BuildContext context) =>
+            const AlertDialog(title: Text('Test')),
+      ),
+    );
+  }
 
   @override
   void initState() {
     super.initState();
+    _textController = TextEditingController();
     fetchBookText();
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 
   Future<void> fetchBookText() async {
@@ -26,12 +43,12 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
       if (textUrl != null) {
         final text = await fetchText(textUrl);
         setState(() {
-          _text = text;
+          _textController.text = text;
           _isLoading = false;
         });
       } else {
         setState(() {
-          _text = 'No text available for this book';
+          _textController.text = 'No text available for this book';
           _isLoading = false;
         });
       }
@@ -64,7 +81,25 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
           : SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: SelectableText(
-                _text,
+                _textController.text,
+                contextMenuBuilder: (context, editableTextState) {
+                  final List<ContextMenuButtonItem> buttonItems =
+                      editableTextState.contextMenuButtonItems;
+                  buttonItems.insert(
+                    0,
+                    ContextMenuButtonItem(
+                      label: 'Crear Flashcard',
+                      onPressed: () {
+                        ContextMenuController.removeAny();
+                        _showDialog(context);
+                      },
+                    ),
+                  );
+                  return AdaptiveTextSelectionToolbar.buttonItems(
+                    anchors: editableTextState.contextMenuAnchors,
+                    buttonItems: buttonItems,
+                  );
+                },
                 style: const TextStyle(
                   fontSize: 19.0,
                   color: Colors.black,
