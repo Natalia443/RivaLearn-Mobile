@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/deck_provider.dart';
 import 'package:flutter_application_1/providers/providers.dart';
-import 'package:flutter_application_1/screens/screens.dart';
+import '../widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class DeckSelectionScreen extends ConsumerWidget {
   final String selectedWord;
@@ -31,9 +30,17 @@ class DeckSelectionScreen extends ConsumerWidget {
                   title: Text(deckName),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    //context.pushNamed(FlashcardScreen.name, extra: deckId);
-                    CreateFlashcardDialog(
-                        deckId: deckId, selectedWord: selectedWord);
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return PopScope(
+                          child: CreateFlashcardDialog(
+                            deckId: deckId,
+                            selectedWord: selectedWord,
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
               );

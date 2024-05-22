@@ -3,6 +3,7 @@ import 'package:flutter_application_1/providers/user_state.dart';
 import 'package:flutter_application_1/screens/screens.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../widgets/widgets.dart';
 
 class AuthScreen extends ConsumerWidget {
   const AuthScreen({super.key});

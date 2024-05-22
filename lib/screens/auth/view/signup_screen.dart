@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/users_datasource.dart';
 import 'package:flutter_application_1/screens/auth/auth.dart';
 import 'package:go_router/go_router.dart';
+import '../../widgets/widgets.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

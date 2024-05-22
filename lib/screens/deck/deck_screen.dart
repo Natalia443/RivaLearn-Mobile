@@ -5,6 +5,7 @@ import 'package:flutter_application_1/providers/providers.dart';
 import 'package:flutter_application_1/screens/screens.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../widgets/widgets.dart';
 
 class DeckScreen extends ConsumerWidget {
   const DeckScreen({super.key});
