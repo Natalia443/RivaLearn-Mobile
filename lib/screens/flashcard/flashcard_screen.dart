@@ -54,14 +54,16 @@ class FlashcardScreen extends ConsumerWidget {
 
 class CreateFlashcardDialog extends ConsumerStatefulWidget {
   final String deckId;
-  const CreateFlashcardDialog({super.key, required this.deckId});
+  final String? selectedWord;
+  const CreateFlashcardDialog(
+      {super.key, required this.deckId, this.selectedWord});
 
   @override
   CreateFlashcardDialogState createState() => CreateFlashcardDialogState();
 }
 
 class CreateFlashcardDialogState extends ConsumerState<CreateFlashcardDialog> {
-  late String? vocab;
+  late String? vocab = widget.selectedWord;
   String sourceLang = langList[0].code;
   String targetLang = deeplTargetLangList[1].code;
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/books_datasource.dart';
+import 'package:flutter_application_1/screens/book/deck_selection_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class BookDetailScreen extends StatefulWidget {
   final Map<String, dynamic> book;
@@ -13,16 +15,6 @@ class BookDetailScreen extends StatefulWidget {
 class _BookDetailScreenState extends State<BookDetailScreen> {
   late TextEditingController _textController;
   bool _isLoading = true;
-
-  void _showDialog(BuildContext context) {
-    Navigator.of(context).push(
-      DialogRoute<void>(
-        context: context,
-        builder: (BuildContext context) =>
-            const AlertDialog(title: Text('Test')),
-      ),
-    );
-  }
 
   @override
   void initState() {
@@ -83,6 +75,10 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
               child: SelectableText(
                 _textController.text,
                 contextMenuBuilder: (context, editableTextState) {
+                  final TextEditingValue value =
+                      editableTextState.textEditingValue;
+                  final selectedWord = value.selection.textInside(value.text);
+
                   final List<ContextMenuButtonItem> buttonItems =
                       editableTextState.contextMenuButtonItems;
                   buttonItems.insert(
@@ -91,7 +87,8 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                       label: 'Crear Flashcard',
                       onPressed: () {
                         ContextMenuController.removeAny();
-                        _showDialog(context);
+                        context.pushNamed(DeckSelectionScreen.name,
+                            extra: selectedWord);
                       },
                     ),
                   );
