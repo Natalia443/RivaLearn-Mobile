@@ -1,4 +1,3 @@
-import 'package:flutter_application_1/screens/book/deck_selection_screen.dart';
 import 'package:flutter_application_1/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
@@ -64,6 +63,13 @@ final appRouter = GoRouter(routes: [
     name: DeckSelectionScreen.name,
     builder: (context, state) => DeckSelectionScreen(
       selectedWord: state.extra as String,
+    ),
+  ),
+  GoRoute(
+    path: "/quiz",
+    name: QuizScreen.name,
+    builder: (context, state) => QuizScreen(
+      deckId: state.extra as String,
     ),
   ),
 ]);
