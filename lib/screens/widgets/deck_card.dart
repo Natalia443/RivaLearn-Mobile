@@ -66,7 +66,8 @@ class DeckCard extends StatelessWidget {
                                                 0.5,
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            context.pushNamed(QuizScreen.name);
+                                            context.pushNamed(QuizScreen.name,
+                                                extra: deckId);
                                           },
                                           child: const Text('Estudiar ahora!'),
                                         ),
