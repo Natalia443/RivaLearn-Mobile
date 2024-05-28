@@ -83,10 +83,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                       children: [
                         ElevatedButton(
                             onPressed: () {
+                              total++;
                               setState(() {
                                 if (counter < flashcardList.length - 1) {
                                   counter++;
-                                  total++;
                                 } else {
                                   saveStats(userId!, success, total);
                                   context.pushNamed(DeckScreen.name);
@@ -109,11 +109,11 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                         ),
                         ElevatedButton(
                             onPressed: () {
+                              success++;
+                              total++;
                               setState(() {
                                 if (counter < flashcardList.length - 1) {
                                   counter++;
-                                  success++;
-                                  total++;
                                 } else {
                                   saveStats(userId!, success, total);
                                   context.pushNamed(DeckScreen.name);
