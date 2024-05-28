@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/users_datasource.dart';
 import 'package:flutter_application_1/screens/auth/auth.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../widgets/widgets.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -35,28 +36,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onChanged: () {
                   _formKey.currentState?.save();
                 },
-                child: Wrap(
+                child: Column(
                   children: [
                     InputField(
-                        label: "Usuario",
-                        onSaved: (value) => _username = value),
+                      label: "Usuario",
+                      onSaved: (value) => _username = value,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     InputField(
-                        label: "Email", onSaved: (value) => _email = value),
+                      label: "Email",
+                      onSaved: (value) => _email = value,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     InputField(
-                        label: "Contraseña",
-                        onSaved: (value) => _password = value),
+                      label: "Contraseña",
+                      onSaved: (value) => _password = value,
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    saveUser(_username!, _password!, _email!);
-                    context.pushNamed(AuthScreen.name);
-                  }
-                },
-                child: const Text('Enviar'),
+              const SizedBox(height: 40),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.85,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      saveUser(_username!, _password!, _email!);
+                      context.pushNamed(AuthScreen.name);
+                    }
+                  },
+                  child: const Text(
+                    'Enviar',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
               ),
             ],
           ),
