@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/data/stats_datasource.dart';
 import 'package:flutter_application_1/providers/providers.dart';
 import 'package:flutter_application_1/screens/deck/deck.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +16,8 @@ class QuizScreen extends ConsumerStatefulWidget {
 
 class _QuizScreenState extends ConsumerState<QuizScreen> {
   int counter = 0;
+  int success = 0;
+  int total = 0;
   String displayExampleText = '';
   String displayVocabText = '';
 
@@ -32,6 +35,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userId = ref.watch(authProvider).tokens?['user_id'];
     final flashcardState = ref.watch(flashcardProvider(widget.deckId));
     return Scaffold(
       appBar: AppBar(),
@@ -82,7 +86,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                               setState(() {
                                 if (counter < flashcardList.length - 1) {
                                   counter++;
+                                  total++;
                                 } else {
+                                  saveStats(userId!, success, total);
                                   context.pushNamed(DeckScreen.name);
                                 }
                               });
@@ -106,7 +112,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                               setState(() {
                                 if (counter < flashcardList.length - 1) {
                                   counter++;
+                                  success++;
+                                  total++;
                                 } else {
+                                  saveStats(userId!, success, total);
                                   context.pushNamed(DeckScreen.name);
                                 }
                               });
