@@ -38,7 +38,13 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final userId = ref.watch(authProvider).tokens?['user_id'];
     final flashcardState = ref.watch(flashcardProvider(widget.deckId));
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+          leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () {
+          context.pushNamed(DeckScreen.name);
+        },
+      )),
       body: Container(
         child: flashcardState.when(
           data: (flashcardList) => ListView.builder(
@@ -89,7 +95,13 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                                   counter++;
                                 } else {
                                   saveStats(userId!, success, total);
-                                  context.pushNamed(DeckScreen.name);
+                                  showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return StatsDialog(
+                                            success: success, total: total);
+                                      });
                                 }
                               });
                               _cleanAnswer();
@@ -116,7 +128,13 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                                   counter++;
                                 } else {
                                   saveStats(userId!, success, total);
-                                  context.pushNamed(DeckScreen.name);
+                                  showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return StatsDialog(
+                                            success: success, total: total);
+                                      });
                                 }
                               });
                               _cleanAnswer();
@@ -133,6 +151,73 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           loading: () => const Center(child: CircularProgressIndicator()),
         ),
       ),
+    );
+  }
+}
+
+class StatsDialog extends StatelessWidget {
+  const StatsDialog({
+    super.key,
+    required this.success,
+    required this.total,
+  });
+
+  final int success;
+  final int total;
+
+  @override
+  Widget build(BuildContext context) {
+    return PopScope(
+      canPop: false,
+      child: Dialog(
+          child: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'Resultados',
+              style: TextStyle(fontSize: 40),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    const Text('Aciertos', style: TextStyle(fontSize: 26)),
+                    Text(success.toString(),
+                        style: const TextStyle(
+                            fontSize: 26,
+                            color: Color.fromARGB(255, 52, 129, 55))),
+                  ],
+                ),
+                Column(
+                  children: [
+                    const Text('Total', style: TextStyle(fontSize: 26)),
+                    Text(total.toString(),
+                        style: const TextStyle(
+                            fontSize: 26,
+                            color: Color.fromARGB(255, 6, 4, 143))),
+                  ],
+                )
+              ],
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.4,
+              child: ElevatedButton(
+                  onPressed: () {
+                    context.pushNamed(DeckScreen.name);
+                  },
+                  child: const Text(
+                    'Volver',
+                    style: TextStyle(fontSize: 20),
+                  )),
+            )
+          ],
+        ),
+      )),
     );
   }
 }

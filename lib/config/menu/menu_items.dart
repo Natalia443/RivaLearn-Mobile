@@ -27,12 +27,17 @@ const List<MenuItem> menuItems = [
       link: '/dictionary'),
   MenuItem(
       title: 'Lector PDF',
-      subtitle: 'Subí tu propio texto.',
+      subtitle: 'Subí tu propio texto',
       icon: Icons.bookmark_add,
       link: '/pdfviewer'),
   MenuItem(
       title: 'Decks',
-      subtitle: 'Crea tus decks',
-      icon: Icons.add_box_outlined,
+      subtitle: 'Crea y consulta tus decks',
+      icon: Icons.add_to_photos,
       link: '/decks'),
+  MenuItem(
+      title: 'Estadisticas',
+      subtitle: 'Estadisticas de los Quiz',
+      icon: Icons.assessment,
+      link: '/stats'),
 ];
