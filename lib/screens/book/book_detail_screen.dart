@@ -81,6 +81,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
 
                   final List<ContextMenuButtonItem> buttonItems =
                       editableTextState.contextMenuButtonItems;
+                  buttonItems.clear();
                   buttonItems.insert(
                     0,
                     ContextMenuButtonItem(

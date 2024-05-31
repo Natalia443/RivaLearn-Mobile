@@ -72,4 +72,9 @@ final appRouter = GoRouter(routes: [
       deckId: state.extra as String,
     ),
   ),
+  GoRoute(
+    path: "/stats",
+    name: StatsScreen.name,
+    builder: (context, state) => const StatsScreen(),
+  ),
 ]);

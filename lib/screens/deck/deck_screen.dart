@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/providers.dart';
+import 'package:flutter_application_1/screens/auth/auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/widgets.dart';
 
@@ -14,8 +16,13 @@ class DeckScreen extends ConsumerWidget {
     final deckState = ref.watch(deckProvider(userId!));
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Decks'),
-      ),
+          title: const Text('Decks'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              context.pushNamed(HomeScreen.name);
+            },
+          )),
       body: RefreshIndicator(
         onRefresh: () => ref.refresh(deckProvider(userId).future),
         child: deckState.when(
