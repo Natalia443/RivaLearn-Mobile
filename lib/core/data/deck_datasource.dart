@@ -1,15 +1,17 @@
 import 'dart:convert';
 
+import 'package:flutter_application_1/entities/entities.dart';
 import 'package:http/http.dart' as http;
 
 const baseUrl = 'https://rivalearn-backend.onrender.com/api/decks';
 
-Future<List<dynamic>> getDecks(String id) async {
+Future<List<Deck>> getDecks(String id) async {
   final response = await http.get(Uri.parse('$baseUrl/get/$id'));
 
   if (response.statusCode == 200) {
-    final List<dynamic> resData = jsonDecode(response.body);
-    return resData;
+    final List<dynamic> list = jsonDecode(response.body);
+    final decks = list.map((json) => Deck.fromJson(json)).toList();
+    return decks;
   } else {
     throw Exception('Error al cargar los datos');
   }

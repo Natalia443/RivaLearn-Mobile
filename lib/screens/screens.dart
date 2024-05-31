@@ -5,3 +5,4 @@ export 'dictionary/dictionary.dart';
 export 'flashcard/flashcard.dart';
 export 'pdf_reader/pdf_reader.dart';
 export 'quiz/quiz.dart';
+export 'stats/stats.dart';

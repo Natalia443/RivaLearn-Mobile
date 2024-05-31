@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/stats_datasource.dart';
+import 'package:flutter_application_1/entities/entities.dart';
 import 'package:flutter_application_1/providers/providers.dart';
 import 'package:flutter_application_1/screens/deck/deck.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -88,7 +89,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                                   counter++;
                                   total++;
                                 } else {
-                                  saveStats(userId!, success, total);
+                                  saveStats(Stats(
+                                      success: success,
+                                      total: total,
+                                      userId: userId!));
                                   context.pushNamed(DeckScreen.name);
                                 }
                               });
@@ -115,7 +119,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                                   success++;
                                   total++;
                                 } else {
-                                  saveStats(userId!, success, total);
+                                  saveStats(Stats(
+                                      success: success,
+                                      total: total,
+                                      userId: userId!));
                                   context.pushNamed(DeckScreen.name);
                                 }
                               });

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/providers/deck_provider.dart';
 import 'package:flutter_application_1/providers/providers.dart';
-import '../widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../widgets/widgets.dart';
 
 class DeckSelectionScreen extends ConsumerWidget {
   final String selectedWord;
@@ -23,8 +23,8 @@ class DeckSelectionScreen extends ConsumerWidget {
           data: (deckList) => ListView.builder(
             itemCount: deckList.length,
             itemBuilder: (context, index) {
-              final deckName = deckList[index]['name'];
-              final deckId = deckList[index]['deck_id'].toString();
+              final deckName = deckList[index].name;
+              final deckId = deckList[index].deckId.toString();
               return Card(
                 child: ListTile(
                   title: Text(deckName),

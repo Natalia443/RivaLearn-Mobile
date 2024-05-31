@@ -1,27 +1,31 @@
 import 'dart:convert';
 
+import 'package:flutter_application_1/entities/entities.dart';
 import 'package:http/http.dart' as http;
 
 const baseUrl = 'https://rivalearn-backend.onrender.com/api/quiz';
 
-Future<Map<String, dynamic>> getStats(String userId) async {
+Future<Stats> getStats(String userId) async {
   final url = Uri.parse('$baseUrl/get/$userId');
   final response = await http.get(url);
 
   if (response.statusCode == 200) {
-    return jsonDecode(response.body);
+    final list = jsonDecode(response.body);
+    final stats = Stats.fromJson(list[0]);
+    return stats;
   } else {
     throw Exception('Error al cargar estadísticas');
   }
 }
 
-Future<void> saveStats(String userId, int success, int total) async {
+Future<void> saveStats(Stats stats) async {
   const url = "$baseUrl/stats";
   try {
-    await http.post(Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
-        body:
-            jsonEncode({'userId': userId, 'success': success, 'total': total}));
+    await http.post(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(stats.toJson()),
+    );
   } catch (e) {
     throw Exception('Error de conexión: $e');
   }
