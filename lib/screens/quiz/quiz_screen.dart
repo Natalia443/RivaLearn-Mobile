@@ -99,7 +99,13 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                                       success: success,
                                       total: total,
                                       userId: userId!));
-                                  context.pushNamed(DeckScreen.name);
+                                  showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return StatsDialog(
+                                            success: success, total: total);
+                                      });
                                 }
                               });
                               _cleanAnswer();
@@ -129,7 +135,13 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                                       success: success,
                                       total: total,
                                       userId: userId!));
-                                  context.pushNamed(DeckScreen.name);
+                                  showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return StatsDialog(
+                                            success: success, total: total);
+                                      });
                                 }
                               });
                               _cleanAnswer();
