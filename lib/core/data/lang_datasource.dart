@@ -6,7 +6,6 @@ final langList = [
   Language(name: "🇫🇷 - Français", code: "fr"),
   Language(name: "🇮🇹 - Italiano", code: "it"),
   Language(name: "🇵🇹 - Portugues", code: "pt"),
-  Language(name: "🇩🇪 - Deutsch", code: "de"),
 ];
 
 final deeplTargetLangList = [
@@ -15,5 +14,4 @@ final deeplTargetLangList = [
   Language(name: "🇫🇷 - Français", code: "fr"),
   Language(name: "🇮🇹 - Italiano", code: "it"),
   Language(name: "🇵🇹 - Portugues", code: "pt-BR"),
-  Language(name: "🇩🇪 - Deutsch", code: "de"),
 ];
