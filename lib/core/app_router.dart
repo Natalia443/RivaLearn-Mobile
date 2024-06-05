@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/entities/entities.dart';
 import 'package:flutter_application_1/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,7 +24,7 @@ final appRouter = GoRouter(routes: [
     path: "/details",
     name: BookDetailScreen.name,
     builder: (context, state) => BookDetailScreen(
-      book: state.extra as Map<String, dynamic>,
+      book: state.extra as Book,
     ),
   ),
   GoRoute(

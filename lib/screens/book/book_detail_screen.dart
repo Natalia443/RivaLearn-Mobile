@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/books_datasource.dart';
+import 'package:flutter_application_1/entities/entities.dart';
 import 'package:flutter_application_1/screens/book/deck_selection_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class BookDetailScreen extends StatefulWidget {
-  final Map<String, dynamic> book;
+  final Book book;
   const BookDetailScreen({super.key, required this.book});
   static const String name = "BookDetailScreen";
 
@@ -31,21 +32,13 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
 
   Future<void> fetchBookText() async {
     try {
-      final textUrl = widget.book['formats']?['text/plain; charset=us-ascii'];
-      if (textUrl != null) {
-        final text = await fetchText(textUrl);
-        setState(() {
-          _textController.text = text;
-          _isLoading = false;
-        });
-      } else {
-        setState(() {
-          _textController.text = 'No text available for this book';
-          _isLoading = false;
-        });
-      }
+      final textUrl = widget.book.text;
+      final text = await fetchText(textUrl);
+      setState(() {
+        _textController.text = text;
+        _isLoading = false;
+      });
     } catch (e) {
-      print('Error fetching book text: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Error fetching book text')),
       );
@@ -60,7 +53,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.book['title'] ?? 'Text',
+          widget.book.title,
           style: const TextStyle(
             fontSize: 20.0,
           ),

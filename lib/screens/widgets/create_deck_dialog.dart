@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/deck_datasource.dart';
-import 'package:flutter_application_1/providers/deck_provider.dart';
 import 'package:flutter_application_1/providers/providers.dart';
 import 'package:flutter_application_1/screens/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

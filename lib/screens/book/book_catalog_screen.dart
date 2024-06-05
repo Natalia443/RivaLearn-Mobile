@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/data/books_datasource.dart';
+import 'package:flutter_application_1/entities/entities.dart';
 import 'package:flutter_application_1/screens/book/book_detail_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,7 +16,7 @@ class BookCatalogScreen extends StatefulWidget {
 }
 
 class _BookCatalogScreenState extends State<BookCatalogScreen> {
-  List<Map<String, dynamic>> _books = [];
+  List<Book> _books = [];
 
   @override
   void initState() {
@@ -54,10 +55,10 @@ class _BookCatalogScreenState extends State<BookCatalogScreen> {
 class BookViewer extends StatelessWidget {
   const BookViewer({
     super.key,
-    required List<Map<String, dynamic>> books,
+    required List<Book> books,
   }) : _books = books;
 
-  final List<Map<String, dynamic>> _books;
+  final List<Book> _books;
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +66,8 @@ class BookViewer extends StatelessWidget {
       itemCount: _books.length < 10 ? _books.length : 10,
       itemBuilder: (context, index) {
         final book = _books[index];
-        final title = book['title'] ?? 'Unknown Title';
-        final imageUrl = book['formats']?['image/jpeg'] ?? '';
+        final title = book.title;
+        final imageUrl = book.image ?? '';
 
         return Card(
           child: ListTile(
