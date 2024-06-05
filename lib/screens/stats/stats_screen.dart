@@ -14,53 +14,56 @@ class StatsScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Estadisticas'),
       ),
-      body: statsState.when(
-        data: (stats) => SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Align(
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    const Text(
-                      'Intentos totales',
-                      style: TextStyle(fontSize: 36),
-                    ),
-                    Text(
-                      stats.total.toString(),
-                      style: const TextStyle(
-                        fontSize: 32,
-                        color: Color.fromARGB(255, 6, 4, 143),
+      body: RefreshIndicator(
+        onRefresh: () => ref.refresh(statsProvider(userId).future),
+        child: statsState.when(
+          data: (stats) => SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Align(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      const Text(
+                        'Intentos totales',
+                        style: TextStyle(fontSize: 36),
                       ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    const Text(
-                      'Aciertos totales',
-                      style: TextStyle(fontSize: 36),
-                    ),
-                    Text(
-                      stats.success.toString(),
-                      style: const TextStyle(
-                        fontSize: 32,
-                        color: Color.fromARGB(255, 52, 129, 55),
+                      Text(
+                        stats.total.toString(),
+                        style: const TextStyle(
+                          fontSize: 32,
+                          color: Color.fromARGB(255, 6, 4, 143),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      const Text(
+                        'Aciertos totales',
+                        style: TextStyle(fontSize: 36),
+                      ),
+                      Text(
+                        stats.success.toString(),
+                        style: const TextStyle(
+                          fontSize: 32,
+                          color: Color.fromARGB(255, 52, 129, 55),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
-        error: (error, _) => Center(
-          child: Text('Error: $error'),
+          loading: () => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          error: (error, _) => Center(
+            child: Text('Error: $error'),
+          ),
         ),
       ),
     );

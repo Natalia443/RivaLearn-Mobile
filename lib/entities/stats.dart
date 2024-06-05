@@ -2,14 +2,13 @@ class Stats {
   Stats({
     required this.success,
     required this.total,
-    required this.userId,
+    this.userId,
   });
 
   factory Stats.fromJson(Map<String, dynamic> json) {
     return Stats(
       success: json['success'] as int,
       total: json['total'] as int,
-      userId: json['userId'] as String,
     );
   }
 
@@ -23,5 +22,5 @@ class Stats {
 
   final int success;
   final int total;
-  final String userId;
+  final String? userId;
 }

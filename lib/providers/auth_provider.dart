@@ -10,17 +10,31 @@ class AuthProvider extends StateNotifier<AuthState> {
 
   Future<void> login(String username, String password) async {
     try {
+      state = AuthState(isLoading: true);
       final tokens = await loginUser(username, password);
-      state = AuthState(isAuthenticated: true, tokens: tokens);
+      state = AuthState(
+        isAuthenticated: true,
+        tokens: tokens,
+        isLoading: false,
+      );
     } catch (error) {
       throw Exception(error);
     }
+  }
+
+  void logout() {
+    state = AuthState();
   }
 }
 
 class AuthState {
   final bool isAuthenticated;
   final Map<String, String>? tokens;
+  final bool isLoading;
 
-  AuthState({this.isAuthenticated = false, this.tokens});
+  AuthState({
+    this.isAuthenticated = false,
+    this.tokens,
+    this.isLoading = false,
+  });
 }

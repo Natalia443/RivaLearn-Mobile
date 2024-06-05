@@ -11,8 +11,12 @@ Future<Stats> getStats(String userId) async {
 
   if (response.statusCode == 200) {
     final list = jsonDecode(response.body);
-    final stats = Stats.fromJson(list[0]);
-    return stats;
+    try {
+      final stats = Stats.fromJson(list[0]);
+      return stats;
+    } catch (e) {
+      throw Exception('Error al serializar estaditicas');
+    }
   } else {
     throw Exception('Error al cargar estadísticas');
   }

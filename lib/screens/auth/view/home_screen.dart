@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/config/menu/menu_items.dart';
-import 'package:flutter_application_1/providers/user_state.dart';
+import 'package:flutter_application_1/providers/auth_provider.dart';
+import 'package:flutter_application_1/screens/auth/auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,54 +11,42 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isAuthenticated = ref.watch(authProvider).isAuthenticated;
     final username = ref.watch(authProvider).tokens?['username'];
-
-    if (!isAuthenticated) {
-      context.go('/');
-      return const SizedBox.shrink();
-    }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('RivaLearn'),
       ),
       drawer: SafeArea(
-          child: Drawer(
-        child: SizedBox(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
-                child: CircleAvatar(
-                  radius: 24,
-                  backgroundColor: const Color(0xFFF37820).withOpacity(.15),
-                  child: Text(
-                    '$username',
-                    style: const TextStyle(
-                      color: Color(0xFF383838),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
+        child: Drawer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '$username',
+                  style: const TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF383838),
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              Text(
-                '$username',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF383838),
+                const Spacer(),
+                ListTile(
+                  title: const Text('Cerrar sesión'),
+                  onTap: () {
+                    ref.read(authProvider.notifier).logout();
+                    context.goNamed(AuthScreen.name);
+                  },
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      )),
+      ),
       body: const _HomeView(),
     );
   }
