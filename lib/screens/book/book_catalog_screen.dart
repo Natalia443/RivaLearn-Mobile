@@ -31,9 +31,7 @@ class _BookCatalogScreenState extends State<BookCatalogScreen> {
         _books = books;
       });
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error fetching books')),
-      );
+      throw Exception(e);
     }
   }
 

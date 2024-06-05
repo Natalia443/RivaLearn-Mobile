@@ -15,16 +15,12 @@ class LangSelectionScreen extends StatelessWidget {
           'Idiomas',
         ),
       ),
-      body: const _LangsView(),
+      body: _LangsView(),
     );
   }
 }
 
 class _LangsView extends StatelessWidget {
-  const _LangsView({
-    super.key,
-  });
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

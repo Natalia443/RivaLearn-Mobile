@@ -39,12 +39,10 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
         _isLoading = false;
       });
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error fetching book text')),
-      );
       setState(() {
         _isLoading = false;
       });
+      throw Exception(e);
     }
   }
 
