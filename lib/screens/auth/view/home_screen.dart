@@ -48,6 +48,57 @@ class HomeScreen extends ConsumerWidget {
         ),
       ),
       body: const _HomeView(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return Dialog(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 40, bottom: 24, right: 18, left: 18),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Chatea con nuestra IA!',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Crear Historia IA',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Chat con IA',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        },
+        child: const Icon(Icons.smart_toy),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
