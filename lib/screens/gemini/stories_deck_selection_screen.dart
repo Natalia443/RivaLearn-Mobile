@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/providers.dart';
+import 'package:flutter_application_1/screens/widgets/create_story_dialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DeckSelectionScreen extends ConsumerWidget {
-  final String selectedWord;
-  const DeckSelectionScreen({super.key, required this.selectedWord});
-  static const String name = "DeckSelectionScreen";
+class StoriesDeckSelectionScreen extends ConsumerWidget {
+  const StoriesDeckSelectionScreen({super.key});
+  static const String name = "StoriesDeckSelectionScreen";
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,13 +22,20 @@ class DeckSelectionScreen extends ConsumerWidget {
             itemCount: deckList.length,
             itemBuilder: (context, index) {
               final deckName = deckList[index].name;
-              final deckId = deckList[index].deckId.toString();
+              //final deckId = deckList[index].deckId.toString();
               return Card(
                 child: ListTile(
                   title: Text(deckName),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    //flashcardSelectionScreen
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return PopScope(
+                          child: CreateStoryDialog(deck: deckList[index]),
+                        );
+                      },
+                    );
                   },
                 ),
               );

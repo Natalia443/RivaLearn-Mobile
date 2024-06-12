@@ -1,17 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/entities/deck.dart';
+import 'package:flutter_application_1/providers/flashcard_provider.dart';
+import 'package:flutter_application_1/providers/stories_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AiScreenStories extends ConsumerStatefulWidget {
-  const AiScreenStories({super.key});
+class AiStoriesScreen extends ConsumerStatefulWidget {
+  static const String name = "AiStoriesScreen";
+  final Deck deck;
+  const AiStoriesScreen({super.key, required this.deck});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _AiScreenStoriesState();
+      _AiStoriesScreenState();
 }
 
-class _AiScreenStoriesState extends ConsumerState<AiScreenStories> {
+class _AiStoriesScreenState extends ConsumerState<AiStoriesScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    final flashcardState =
+        ref.watch(flashcardProvider(widget.deck.deckId.toString()));
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Seleccionar Deck'),
+      ),
+      body: flashcardState.when(
+        data: (flashcards) {
+          final storyState = ref.watch(storiesProvider(flashcards));
+          return storyState.when(
+            data: (story) => Center(child: Text(story)),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (error, _) => Center(child: Text('Error: $error')),
+          );
+        },
+        error: (error, _) => Center(
+          child: Text('Error: $error'),
+        ),
+        loading: () => const Center(child: CircularProgressIndicator()),
+      ),
+    );
   }
 }

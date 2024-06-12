@@ -54,6 +54,21 @@ class StatsScreen extends ConsumerWidget {
                       ),
                     ],
                   ),
+                  Column(
+                    children: [
+                      const Text(
+                        'Porcentaje de aciertos',
+                        style: TextStyle(fontSize: 36),
+                      ),
+                      Text(
+                        '${((stats.success / stats.total) * 100).toStringAsFixed(2)}%',
+                        style: const TextStyle(
+                          fontSize: 32,
+                          color: Color.fromARGB(255, 68, 169, 236),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

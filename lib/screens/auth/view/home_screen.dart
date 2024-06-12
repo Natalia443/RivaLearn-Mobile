@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/config/menu/menu_items.dart';
 import 'package:flutter_application_1/providers/auth_provider.dart';
-import 'package:flutter_application_1/screens/auth/auth.dart';
+import 'package:flutter_application_1/screens/screens.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -69,7 +69,9 @@ class HomeScreen extends ConsumerWidget {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.5,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.pushNamed(StoriesDeckSelectionScreen.name);
+                          },
                           child: const Text(
                             'Crear Historia IA',
                             style: TextStyle(fontSize: 18),

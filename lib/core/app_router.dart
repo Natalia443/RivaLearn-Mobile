@@ -78,4 +78,14 @@ final appRouter = GoRouter(routes: [
     name: StatsScreen.name,
     builder: (context, state) => const StatsScreen(),
   ),
+  GoRoute(
+    path: "/storiesDeck",
+    name: StoriesDeckSelectionScreen.name,
+    builder: (context, state) => const StoriesDeckSelectionScreen(),
+  ),
+  GoRoute(
+    path: "/stories",
+    name: AiStoriesScreen.name,
+    builder: (context, state) => AiStoriesScreen(deck: state.extra as Deck),
+  ),
 ]);
