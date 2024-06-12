@@ -88,4 +88,9 @@ final appRouter = GoRouter(routes: [
     name: AiStoriesScreen.name,
     builder: (context, state) => AiStoriesScreen(deck: state.extra as Deck),
   ),
+  GoRoute(
+    path: "/chat",
+    name: ChatScreen.name,
+    builder: (context, state) => const ChatScreen(),
+  ),
 ]);

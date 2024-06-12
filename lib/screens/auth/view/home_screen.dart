@@ -84,7 +84,9 @@ class HomeScreen extends ConsumerWidget {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.5,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.pushNamed(ChatScreen.name);
+                          },
                           child: const Text(
                             'Chat con IA',
                             style: TextStyle(fontSize: 18),

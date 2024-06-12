@@ -1,4 +1,5 @@
 export 'auth_provider.dart';
+export 'chatai_provider.dart';
 export 'deck_provider.dart';
 export 'flashcard_provider.dart';
 export 'stats_provider.dart';

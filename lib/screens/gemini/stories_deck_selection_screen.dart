@@ -22,7 +22,6 @@ class StoriesDeckSelectionScreen extends ConsumerWidget {
             itemCount: deckList.length,
             itemBuilder: (context, index) {
               final deckName = deckList[index].name;
-              //final deckId = deckList[index].deckId.toString();
               return Card(
                 child: ListTile(
                   title: Text(deckName),
