@@ -1,9 +1,9 @@
 class Book {
-  String title;
+  String? title;
   String? image;
-  String text;
+  String? text;
 
-  Book({required this.title, this.image, required this.text});
+  Book({this.title, this.image, this.text});
 
   factory Book.fromJson(Map<String, dynamic> json) {
     return Book(

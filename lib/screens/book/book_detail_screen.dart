@@ -33,7 +33,12 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
   Future<void> fetchBookText() async {
     try {
       final textUrl = widget.book.text;
-      final text = await fetchText(textUrl);
+      String text;
+      if (textUrl != null) {
+        text = await fetchText(textUrl);
+      } else {
+        text = "El texto de este libro no se encuentra disponible";
+      }
       setState(() {
         _textController.text = text;
         _isLoading = false;
@@ -51,7 +56,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.book.title,
+          widget.book.title ?? "titulo",
           style: const TextStyle(
             fontSize: 20.0,
           ),
