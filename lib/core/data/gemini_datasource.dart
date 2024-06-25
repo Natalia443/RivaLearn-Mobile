@@ -16,3 +16,16 @@ Future<String> getStory(List<dynamic> words) async {
     throw Exception('Error de conexión: $e');
   }
 }
+
+Future<String> chat(String message) async {
+  const url = '$baseUrl/chat';
+
+  try {
+    final response = await http.post(Uri.parse(url),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'prompt': message}));
+    return response.body.replaceAll('"', '');
+  } catch (e) {
+    throw Exception('Error de conexión: $e');
+  }
+}
