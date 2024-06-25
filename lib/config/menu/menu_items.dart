@@ -36,8 +36,8 @@ const List<MenuItem> menuItems = [
       icon: Icons.add_to_photos,
       link: '/decks'),
   MenuItem(
-      title: 'Estadisticas',
-      subtitle: 'Estadisticas de los Quiz',
+      title: 'Estadísticas',
+      subtitle: 'Estadísticas de los Quiz',
       icon: Icons.assessment,
       link: '/stats'),
 ];

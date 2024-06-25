@@ -25,7 +25,10 @@ class InputField extends StatelessWidget {
         obscureText: label.toLowerCase() == 'contraseña',
         decoration: InputDecoration(
           hintText: label.toLowerCase(),
-          border: const OutlineInputBorder(),
+          filled: true,
+          fillColor: Colors.white,
+          border: InputBorder.none,
+          //border: const OutlineInputBorder(),
         ),
       ),
     );

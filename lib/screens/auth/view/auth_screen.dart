@@ -22,14 +22,16 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     final authState = ref.watch(authProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('RivaLearn'),
-      ),
+      backgroundColor: const Color.fromARGB(255, 52, 170, 209),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              'assets/icon/banner.png',
+              scale: 6,
+            ),
+            const SizedBox(height: 50),
             InputField(
               label: 'Usuario',
               controller: usernameController,
@@ -77,7 +79,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.85,
-              child: OutlinedButton(
+              child: ElevatedButton(
                 onPressed: () {
                   context.pushNamed(SignUpScreen.name);
                 },

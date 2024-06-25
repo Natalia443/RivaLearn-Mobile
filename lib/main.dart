@@ -20,7 +20,15 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
-      theme: ThemeData(colorSchemeSeed: Colors.blueGrey),
+      theme: ThemeData(
+          colorSchemeSeed: Colors.blueGrey,
+          appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.white),
+              backgroundColor: Color.fromARGB(255, 52, 170, 209),
+              titleTextStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600))),
     );
   }
 }

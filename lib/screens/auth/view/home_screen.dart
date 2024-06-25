@@ -4,6 +4,7 @@ import 'package:flutter_application_1/providers/auth_provider.dart';
 import 'package:flutter_application_1/screens/screens.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,14 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('RivaLearn'),
+        title: Text('RivaLearn',
+            style: GoogleFonts.figtree(
+                textStyle: const TextStyle(
+              color: Color.fromARGB(255, 255, 255, 255),
+            ))),
+        backgroundColor: const Color.fromARGB(255, 52, 170, 209),
+        iconTheme:
+            const IconThemeData(color: Color.fromARGB(255, 252, 252, 252)),
       ),
       drawer: SafeArea(
         child: Drawer(

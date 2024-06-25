@@ -12,7 +12,7 @@ class StatsScreen extends ConsumerWidget {
     final statsState = ref.watch(statsProvider(userId!));
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Estadisticas'),
+        title: const Text('Estadísticas'),
       ),
       body: RefreshIndicator(
         onRefresh: () => ref.refresh(statsProvider(userId).future),
