@@ -1,4 +1,5 @@
 import 'package:flutter_application_1/core/data/gemini_datasource.dart';
+import 'package:flutter_application_1/entities/entities.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final chatAIProvider = AsyncNotifierProvider<GeminiNotifier, List<ChatMessage>>(
@@ -16,7 +17,7 @@ class GeminiNotifier extends AsyncNotifier<List<ChatMessage>> {
     );
     state = AsyncValue.data([...currentMessages]);
 
-    final candidates = await chat(message);
+    final candidates = await chat(message, currentMessages);
     final response = candidates;
     state = AsyncValue.data([
       ...currentMessages,
@@ -26,14 +27,4 @@ class GeminiNotifier extends AsyncNotifier<List<ChatMessage>> {
       ),
     ]);
   }
-}
-
-class ChatMessage {
-  final String message;
-  final bool isUser;
-
-  ChatMessage({
-    required this.message,
-    required this.isUser,
-  });
 }
